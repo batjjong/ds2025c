@@ -1,10 +1,14 @@
-def inters(l1,l2):
-    s1 = set(l1)
-    s2 = set(l2)
-    #return  list(s1.intersection(s2))
-    return list(s1 - s2) #-차집합, &교집합, |합집합
+def my_zip(l1,l2):
+    r =[]
+    for i in range(len(l1)):
+        r.append((l1[i],l2[i]))
 
-l1=[45,5,22,31,7,19]
-l2=[2,1,5,22,7,38,27,19,13,41]
-print(inters(l1,l2))
+    return r
 
+groups = ['HOT', 'Seventeen', 'Black Pink', 'NJZ']
+# ratings = [1, 2, 4, 3, 100]
+ratings = [1, 2, 4, 3]
+
+#group_rating = list(zip(groups, ratings))
+#print(group_rating)
+print(my_zip(groups, ratings))
