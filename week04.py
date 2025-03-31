@@ -30,16 +30,20 @@ class LinkedList:
         return f"{target}은(는) 링크드 리스트 안에 존재하지 않습니다"
 
     def remove(self, target):
-        if self.head.data == target:
-            self.head = self.head.link
-            return
         current = self.head
+        if current.data == target:
+        #if self.head.data == target:
+            self.head = self.head.link
+            current.link = None
+            return
         previous = None
         while current:
             if current.data == target:
                 previous.link = current.link
+                current.link = None
             previous = current
             current = current.link
+
 
 
     def __str__(self):
@@ -57,5 +61,5 @@ ll.append(10)
 ll.append(-9)
 
 ll.remove(8)
-ll.remove(-9)
+ll.remove(0)
 print(ll)
