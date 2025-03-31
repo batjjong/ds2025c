@@ -38,7 +38,8 @@ class LinkedList:
         while current:
             if current.data == target:
                 previous.link = current.link
-                current = current.link
+            previous = current
+            current = current.link
 
 
     def __str__(self):
@@ -56,5 +57,5 @@ ll.append(10)
 ll.append(-9)
 
 ll.remove(8)
-ll.remove(10)
+ll.remove(-9)
 print(ll)
