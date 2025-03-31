@@ -1,3 +1,4 @@
+from os import remove
 from re import search
 import random
 
@@ -28,6 +29,18 @@ class LinkedList:
                 current = current.link
         return f"{target}은(는) 링크드 리스트 안에 존재하지 않습니다"
 
+    def remove(self, target):
+        if self.head.data == target:
+            self.head = self.head.link
+            return
+        current = self.head
+        previous = None
+        while current:
+            if current.data == target:
+                previous.link = current.link
+                current = current.link
+
+
     def __str__(self):
         current = self.head
         out_texts = ""
@@ -38,14 +51,10 @@ class LinkedList:
         return out_texts + "END"
 
 ll = LinkedList()
-#ll.append(8)
-#ll.append(10)
-#ll.append(-9)
-#print(ll)
-#print(ll.search(99))
-#print(ll.search(10))
+ll.append(8)
+ll.append(10)
+ll.append(-9)
 
-for _ in range(20):
-    ll.append(random.randint(1,30))
+ll.remove(8)
+ll.remove(10)
 print(ll)
-print(ll.search(7))
