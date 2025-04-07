@@ -1,20 +1,15 @@
-def check_parentheses(a_string):
+def is_vaild_brackets(expression : str) -> bool:
     stack = []
-    for c in a_string:
-        if c == "(":
-            stack.append(c)
-        if c == "}" or c == "]":
-            return "ad"
+    brackets = {')':'(', '}':'{', ']':'[' }
 
-        if c == ")":
-            if len(stack) == 0:
+    for letter in expression:
+        if letter in brackets.values():
+            stack.append(letter)
+        if letter == brackets.keys():
+            if not stack or stack.pop() != brackets[letter]:
                 return False
-            else:
-                stack.pop()
-    return len(stack) == 0
+    return not stack
 
-
-
-
-
-print(check_parentheses("("))
+print(is_vaild_brackets("{}"))
+print(is_vaild_brackets("(]"))
+print(is_vaild_brackets("{)"))
