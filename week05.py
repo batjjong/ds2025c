@@ -1,33 +1,34 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.link = None
+
+
 class Stack:
     def __init__(self):
-        self.items = list()
+        self.top = None
 
-    def push(self, item):
-        self.items.append(item)
+    def push(self, data):
+        node = Node(data)
+        if self.top is None:
+            self.top = node
+        else:
+            node.link = self.top
+            self.top = node  # top update
 
     def pop(self):
-        return self.items.pop()
-
-    def size(self):
-        return len(self.items)
-
-    def is_empty(self):
-        return len(self.items) == 0
-
-    def peek(self):#가장 위에 있는 것 받아옴
-        return self.items[-1]
+        if self.top is None:
+            return "Stack is empty!"
+        popped_node = self.top
+        self.top = self.top.link
+        popped_node.link = None #연결 끊음
+        return popped_node.data
 
 
 s1 = Stack()
-s2 = Stack()
-print(s1.is_empty())
+print(s1.pop())#21번 라인 실행 스택이 빈 상태
 s1.push("Data structure")
-print(s1.is_empty())
-print(s2.is_empty())
 s1.push("Database")
-print(s1.size())
-print(s1.peek())
-print(s1.size())
 print(s1.pop())
-print(s1.size())
-print(s1.peek())
+print(s1.pop())
+print(s1.pop())#스택이 빈 상태
