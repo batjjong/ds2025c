@@ -59,7 +59,7 @@ ll = LinkedList()
 ll.append(8)
 ll.append(10)
 ll.append(-9)
-
+ 
 ll.remove(8)
 ll.remove(0)
 print(ll)
