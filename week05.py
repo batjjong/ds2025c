@@ -14,7 +14,7 @@ class Stack:
     def is_empty(self):
         return len(self.items) == 0
 
-    def peek(self):
+    def peek(self):#가장 위에 있는 것 받아옴
         return self.items[-1]
 
 
