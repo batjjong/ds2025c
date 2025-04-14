@@ -10,6 +10,7 @@ def is_vaild_brackets(expression : str) -> bool:
                 return False
     return not stack
 
+
 print(is_vaild_brackets("{}"))
 print(is_vaild_brackets("(]"))
 print(is_vaild_brackets("{)"))
