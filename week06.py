@@ -17,7 +17,21 @@ class Queue:
         else:
             self.rear.link = node
             self.rear = node
+    def dequeue(self):
+        if self.front is None:
+            raise IndexError("Queue is empty")
+        self.size = self.size -1
+        temp = self.front
+        self.front = self.front.link
+        if self.front is None:
+            self.rear = None
+        return temp.data
 q =Queue()
 q.enqueue("Database")
 q.enqueue("Data structure")
 print(q.size, q.front.data, q.rear.data)
+print(q.dequeue())
+print(q.size, q.front.data, q.rear.data)
+print(q.dequeue())
+#print(q.size, q.front.data, q.rear.data) 프론트과 리어 값은 None
+#print(q.dequeue()) 인덱스 에러가 남
