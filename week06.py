@@ -4,7 +4,6 @@ q =Queue()
 q.put("Database")
 q.put("Data Structure")
 
-
 print(q.qsize())
 print(q.get())
 print(q.qsize())
