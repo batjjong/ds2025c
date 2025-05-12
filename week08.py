@@ -34,6 +34,7 @@ def insert(root, value):
     return root
 
 
+
 if __name__ == "__main__":
     numbers = [10, 15, 8, 3, 9]
     # numbers = [10, 15, 8, 3, 9, 1, 7, 100]
