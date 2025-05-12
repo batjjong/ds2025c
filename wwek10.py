@@ -69,17 +69,25 @@ def delete(node,value):
     elif value > node.data:
         node.right = delete(node.right, value)
     else: #삭제 값 발견
-        #자식노드가 1개 이하일 때                                                    10
-        if node.left is None:                                         #     8          15
-            return node.right                                         # 3       9   14
+        #자식노드가 1개 이하일 때
+        if node.left is None:
+            return node.right
         elif node.right is None:
             return node.left
         #자식노드가 2개인 경우
-        min_larger_node = node.right
-        while min_larger_node.left:
-            min_larger_node = min_larger_node.left
-        node.data = min_larger_node.data
-        node.right = delete(node.right,min_larger_node.data)
+        #
+#        min_larger_node = node.right
+#        while min_larger_node.left:
+#            min_larger_node = min_larger_node.left
+#        node.data = min_larger_node.data
+#        node.right = delete(node.right,min_larger_node.data)
+        #
+        max_smaller_node = node.left
+        while max_smaller_node.right:
+            max_smaller_node = max_smaller_node.right
+        node.data = max_smaller_node.data
+        node.left = delete(node.left, max_smaller_node.data)
+
     return node
 
 if __name__ == "__main__":
