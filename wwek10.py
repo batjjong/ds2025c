@@ -109,3 +109,4 @@ if __name__ == "__main__":
     delete_number = int(input("삭제 값 입력 : "))
     root = delete(root,delete_number)
     pre_order(root)
+
