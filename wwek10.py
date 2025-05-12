@@ -47,6 +47,7 @@ def insert(root, value):
             current = current.right  # move
     return root
 
+
 def search(find_number):
     current = root
     while True:
@@ -60,6 +61,20 @@ def search(find_number):
             if current.right is None:
                 return False
             current = current.right
+
+def delete(node,value):
+    if node is None:
+        return None
+    if value < node.data:
+        node.left = delete(node.left, value)
+    elif value > node.data:
+        node.right = delete(node.right, value)
+    else: #삭제 값 발견, 자식 노드가 1개 이하일 때
+        if node.left is None:
+            return node.right
+        elif node.right is None:
+            return node.left
+    return node
 
 if __name__ == "__main__":
     numbers = [10, 15, 8, 3, 9]
@@ -79,8 +94,12 @@ if __name__ == "__main__":
     pre_order(root)
     print()
 
-    number = int(input("찾는 값 입력 : "))
-    if search(number):
-        print(f"{number}을(를) 찾았습니다")
+    find_number = int(input("찾는 값 입력 : "))
+    if search(find_number):
+        print(f"{find_number}을(를) 찾았습니다")
     else:
-        print(f"{number}이(가) 존재하지 않습니다")
+        print(f"{find_number}이(가) 존재하지 않습니다")
+
+    delete_number = int(input("삭제 값 입력 : "))
+    root = delete(root,delete_number)
+    post_order(root)
