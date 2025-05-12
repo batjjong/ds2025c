@@ -18,7 +18,6 @@ def in_order(node):
         print(node.data, end='->')
         post_order(node.right)
 
-
 def pre_order(node):
     if node:
         print(node.data, end='->')
@@ -69,15 +68,22 @@ def delete(node,value):
         node.left = delete(node.left, value)
     elif value > node.data:
         node.right = delete(node.right, value)
-    else: #삭제 값 발견, 자식 노드가 1개 이하일 때
-        if node.left is None:
-            return node.right
+    else: #삭제 값 발견
+        #자식노드가 1개 이하일 때                                                    10
+        if node.left is None:                                         #     8          15
+            return node.right                                         # 3       9   14
         elif node.right is None:
             return node.left
+        #자식노드가 2개인 경우
+        min_larger_node = node.right
+        while min_larger_node.left:
+            min_larger_node = min_larger_node.left
+        node.data = min_larger_node.data
+        node.right = delete(node.right,min_larger_node.data)
     return node
 
 if __name__ == "__main__":
-    numbers = [10, 15, 8, 3, 9]
+    numbers = [10, 15, 8, 3, 9, 14]
     # numbers = [10, 15, 8, 3, 9, 1, 7, 100]
     root = None
 
@@ -102,4 +108,4 @@ if __name__ == "__main__":
 
     delete_number = int(input("삭제 값 입력 : "))
     root = delete(root,delete_number)
-    post_order(root)
+    pre_order(root)
