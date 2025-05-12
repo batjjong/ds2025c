@@ -26,7 +26,7 @@ def pre_order(node):
         post_order(node.right)
 
 
-def insert(root, value):
+def insert(node, value):
     new_node = TreeNode()
     new_node.data = value
 
@@ -45,7 +45,7 @@ def insert(root, value):
                 current.right = new_node
                 break
             current = current.right  # move
-    return root
+    return node
 
 
 def search(find_number):
