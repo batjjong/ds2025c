@@ -1,5 +1,6 @@
 from re import search
 
+
 class TreeNode:
     def __init__(self):
         self.left = None
