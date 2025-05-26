@@ -25,7 +25,6 @@ def bfs(g,i,visited):
         deque.append(visited[i])
 
 
-
         deque.pop()
         print(chr(ord('A')+i),end=' ')
 
