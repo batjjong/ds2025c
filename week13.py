@@ -15,18 +15,24 @@ def print_graph(g) :
 		print()
 	print()
 
+class DisjointSet:
 
-def dfs(g, current, visited):#재귀함수
-    visited.append(current)
-    for vertex in range(graph_size):
-        if g.graph[current][vertex] > 0 and vertex not in visited:
-            dfs(g, vertex, visited)
+    def __init__(self, n):
+        self.parent = [i for i in range(n)]
 
+    def find(self,x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
 
-def find_vertex(g, find_vtx):
-    visited_array = list()
-    dfs(g, 0, visited_array)
-    return find_vtx in visited_array  # True or False
+    def marge(self,x,y):    #Union
+        x_root = self.find(x)
+        y_root = self.find(y)
+
+        if x_root != y_root:
+            self.parent[y_root] = x_root
+            return True
+        return False
 
 
 g1 = None
@@ -53,41 +59,27 @@ for i in range(graph_size) :
 			edge_ary.append([g1.graph[i][k], i, k])
 print(edge_ary)
 
-edge_ary.sort(reverse=True)
+edge_ary.sort(reverse=False) #오름차순
+#edge_ary.sort(reverse=True)  내림차순
 print(edge_ary)
 
-new_ary = list()
-for i in range(1, len(edge_ary), 2):
-	new_ary.append(edge_ary[i])
-print(new_ary)
+ds = DisjointSet(graph_size)
+mst_edge = list()
+mst_cost = 0
 
-index = 0
-while len(new_ary) > graph_size - 1:	# 간선의 개수가 '정점 개수-1'일 때까지 반복
-	start = new_ary[index][1]
-	end = new_ary[index][2]
-	save_cost = new_ary[index][0]
+for cost, s, e in edge_ary:
+    if ds.marge(s,e):
+        mst_edge.append((cost,s,e)) #최소 간선 추가
+        mst_cost = mst_cost +cost   #최소 비용 업데이트
 
-	g1.graph[start][end] = 0
-	g1.graph[end][start] = 0
-
-	start_reachable = find_vertex(g1, start)
-	end_reachable = find_vertex(g1, end)
-
-	if start_reachable and end_reachable :
-		del new_ary[index]
-	else:
-		g1.graph[start][end] = save_cost
-		g1.graph[end][start] = save_cost
-		index = index + 1
+mst_gragh = Graph(graph_size)
+for cost,s,e in mst_edge:
+    mst_gragh.graph[s][e] = cost
+    mst_gragh.graph[e][s] = cost
 
 print('최소 비용의 도로 연결도')
-print_graph(g1)
+print_graph(mst_gragh)
 
-total_cost = 0
-for i in range(graph_size):
-	for k in range(graph_size):
-		if g1.graph[i][k] != 0:
-			total_cost = total_cost + g1.graph[i][k]
-
-total_cost = total_cost // 2
-print(f"최소 비용 :  {total_cost}")
+print(f"최소 비용 :  {mst_cost}")
+for cost, u, v in mst_edge:
+    print(f"{Graph[s]} --- {Graph[e]} : {cost}")
