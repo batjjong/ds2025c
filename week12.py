@@ -3,7 +3,7 @@ class Graph:
 		self.graph = [[0 for _ in range(size)] for _ in range(size)]
 
 def print_graph(g) :
-	print(' ', end = ' ')Add commentMore actions
+	print(' ', end = ' ')
 	for v in range(len(g.graph)) :
 		print(name_ary[v], end =' ')
 	print()
