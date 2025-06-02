@@ -10,6 +10,7 @@ graph = [
     [0, 0, 0, 1, 0, 0, 0, 1],
     [0, 0, 0, 0, 0, 0, 1, 0]
 ]
+
 #깊이우선방식
 #Deep First Search
 def dfs(g,i,visited):
