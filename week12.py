@@ -31,6 +31,7 @@ def bfs(g,i,visited):
                 q.append(j)
                 visited[j] = 1
 
+
 visited_dfs = [0 for _ in range(len(graph))]
 visited_bfs = [0 for _ in range(len(graph))]
 
